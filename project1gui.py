@@ -1,14 +1,12 @@
 from tkinter import *
-from PIL import ImageTk, Image
-
 
 class GUI:
     def __init__(self, window):
         self.window = window
-        buttonBlackUp = Image.PhotoImage(ImageTk.open("UpTriangleBlack.png"))
-        buttonBlackDown = Image.PhotoImage(ImageTk.open("DownTriangleBlack.png"))
-        buttonRedUp = Image.PhotoImage(ImageTk.open("UpTriangleRed.png"))
-        buttonRedDown = Image.PhotoImage(ImageTk.open("DownTriangleRed.png"))
+        buttonBlackUp = PhotoImage("UpTriangleBlack.png")
+        buttonBlackDown = PhotoImage("DownTriangleBlack.png")
+        buttonRedUp = PhotoImage("UpTriangleRed.png")
+        buttonRedDown = PhotoImage("DownTriangleRed.png")
 
         self.frame_volume = Frame(self.window)
         self.button_volume_up = Label(self.frame_volume, image=buttonBlackUp)
@@ -26,9 +24,13 @@ class GUI:
         self.button_channel_up.pack(padx=5, side='left')
         self.label_channel.pack(padx=5, side='left')
         self.button_channel_down.pack(padx=5, side='left')
-        self.frame_channel.pack(anchor='e', pady=10)
+        self.frame_channel.pack(anchor='w', pady=10)
 
         self.frame_screen = Frame(self.window)
+        self.canvas_screen = Canvas(self.frame_screen, width=300, height=300, bg='black')
+        self.canvas_screen.create_image((100, 100), image=buttonBlackUp)
+        self.canvas_screen.pack(padx=5, side='left')
+        self.frame_channel.pack(anchor='w', pady=10)
 
 
 
