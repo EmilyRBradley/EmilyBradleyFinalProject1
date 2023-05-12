@@ -3,7 +3,7 @@ from project1gui import *
 def main():
     window = Tk()
     window.title('Lab 11')
-    window.geometry('400x230')
+    window.geometry('500x500')
     window.resizable(False, False)
 
     GUI(window)
