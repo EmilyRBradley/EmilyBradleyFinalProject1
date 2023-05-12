@@ -36,8 +36,8 @@ class GUI:
         self.frame_channel.pack(anchor='w', pady=10)
 
     def button_up(self):
-        try:
-            cur_vol =
+        pass
+
 
 
 

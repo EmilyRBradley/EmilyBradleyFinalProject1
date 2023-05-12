@@ -2,7 +2,7 @@ from project1gui import *
 
 def main():
     window = Tk()
-    window.title('Lab 11')
+    window.title('Project 1')
     window.geometry('500x500')
     window.resizable(False, False)
 
