@@ -11,7 +11,8 @@ class GUI:
         self.window = window
         self.current_volume = 0
         self.current_channel = 0
-        self.power = False
+        self.is_power = False
+        self.is_muted = False
         buttonBlackUp = PhotoImage("UpTriangleBlack.png")
         buttonBlackDown = PhotoImage("DownTriangleBlack.png")
         buttonRedUp = PhotoImage("UpTriangleRed.png")
@@ -37,7 +38,7 @@ class GUI:
         self.button_channel_up.pack(padx=5, side='left')
         self.label_channel.pack(padx=5, side='left')
         self.button_channel_down.pack(padx=5, side='left')
-        self.frame_channel.pack(anchor='w', pady=10)
+        self.frame_channel.pack(anchor='e', pady=10)
 
         self.frame_screen = Frame(self.window)
         self.canvas_screen = Canvas(self.frame_screen, width=300, height=300, bg='black')
@@ -45,13 +46,20 @@ class GUI:
         self.canvas_screen.pack(padx=5, side='left')
         self.frame_channel.pack(anchor='w', pady=10)
 
+        self.frame_power_mute = Frame(self.window)
+        self.button_mute = Button(self.frame_power_mute, text='MUTE', command=self.set_mute)
+        self.button_power = Button(self.frame_power_mute, text='PWR', command=self.set_power)
+        self.button_mute.pack(padx=5, side='left')
+        self.button_power.pack(padx=5, side='left')
+        self.frame_channel.pack(anchor='s', pady=10)
+
     def volume_up(self, max=MAX_VOLUME):
         """
         Function to increase the volume of the television.
         :param max: Maximum volume allowed for the television
         :return: Returns the current volume increased by one, provided the television is powered on
         """
-        if self.power:
+        if self.is_power:
             current_volume = self.current_volume.get()
             if current_volume < max:
                 return current_volume + 1
@@ -62,7 +70,7 @@ class GUI:
         :param min: Minimum volume allowed for the television
         :return: Returns the current volume decreased by one, provided the television is powered on
         """
-        if self.power:
+        if self.is_power:
             current_volume = self.current_volume.get()
             if current_volume > min:
                 return current_volume - 1
@@ -74,7 +82,7 @@ class GUI:
         :return: Returns the current channel value increased by one, provided the television is powered on. If the
          current channel value is equal to the maximum channel, the channel is reset to 0.
         """
-        if self.power:
+        if self.is_power:
             current_channel = self.current_channel.get()
             if current_channel < max:
                 current_channel = current_channel + 1
@@ -82,7 +90,6 @@ class GUI:
             elif current_channel == max:
                 current_channel = 0
                 return current_channel
-
 
     def channel_down(self, min=MIN_CHANNEL, max=MAX_CHANNEL):
         """
@@ -92,7 +99,7 @@ class GUI:
         :return: Returns the current channel value decreased by one, provided the television is powered on. If the
          current channel value is 0, the channel is reset to the maximum channel.
         """
-        if self.power:
+        if self.is_power:
             current_channel = self.current_channel.get()
             if current_channel > min:
                 current_channel = current_channel - 1
@@ -100,6 +107,31 @@ class GUI:
             elif current_channel == min:
                 current_channel = max
                 return current_channel
+
+    def set_mute(self):
+        """
+        Changes whether the television is muted
+        :return: Returns True if the television was unmuted, or False if the television was muted
+        """
+        if self.is_power:
+            if self.is_muted:
+                self.is_muted = False
+                return self.is_muted
+            else:
+                self.is_muted = True
+                return self.is_muted
+
+    def set_power(self):
+        """
+        Changes whether the television is powered on
+        :return: Returns True if the television was powered off, or False if the television was powered on
+        """
+        if self.is_power:
+            self.is_power = False
+            return self.is_power
+        else:
+            self.is_power = True
+            return self.is_power
 
 
 
