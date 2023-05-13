@@ -35,16 +35,20 @@ class GUI:
         self.label_channel = Label(self.frame_channel, text='CHNL')
         # self.button_channel_down = Label(self.frame_channel, image=buttonBlackDown)
         self.button_channel_down = Button(self.frame_channel, text='v', command=self.channel_down)
-        self.button_channel_up.pack(padx=5, side='left')
-        self.label_channel.pack(padx=5, side='left')
-        self.button_channel_down.pack(padx=5, side='left')
+        self.button_channel_up.pack(padx=5, side='right')
+        self.label_channel.pack(padx=5, side='right')
+        self.button_channel_down.pack(padx=5, side='right')
         self.frame_channel.pack(anchor='e', pady=10)
+
+        """
 
         self.frame_screen = Frame(self.window)
         self.canvas_screen = Canvas(self.frame_screen, width=300, height=300, bg='black')
         self.canvas_screen.create_image((100, 100), image=buttonBlackUp)
         self.canvas_screen.pack(padx=5, side='left')
         self.frame_channel.pack(anchor='w', pady=10)
+        
+        """
 
         self.frame_power_mute = Frame(self.window)
         self.button_mute = Button(self.frame_power_mute, text='MUTE', command=self.set_mute)
@@ -132,9 +136,3 @@ class GUI:
         else:
             self.is_power = True
             return self.is_power
-
-
-
-
-
-
