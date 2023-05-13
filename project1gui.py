@@ -11,6 +11,7 @@ class GUI:
         self.window = window
         self.current_volume = 0
         self.current_channel = 0
+        self.power = False
         buttonBlackUp = PhotoImage("UpTriangleBlack.png")
         buttonBlackDown = PhotoImage("DownTriangleBlack.png")
         buttonRedUp = PhotoImage("UpTriangleRed.png")
@@ -45,24 +46,60 @@ class GUI:
         self.frame_channel.pack(anchor='w', pady=10)
 
     def volume_up(self, max=MAX_VOLUME):
-        current_volume = self.current_volume.get()
-        if current_volume < max:
-            return current_volume + 1
+        """
+        Function to increase the volume of the television.
+        :param max: Maximum volume allowed for the television
+        :return: Returns the current volume increased by one, provided the television is powered on
+        """
+        if self.power:
+            current_volume = self.current_volume.get()
+            if current_volume < max:
+                return current_volume + 1
 
     def volume_down(self, min=MIN_VOLUME):
-        current_volume = self.current_volume.get()
-        if current_volume > min:
-            return current_volume - 1
+        """
+        Function to decrease the volume of the television.
+        :param min: Minimum volume allowed for the television
+        :return: Returns the current volume decreased by one, provided the television is powered on
+        """
+        if self.power:
+            current_volume = self.current_volume.get()
+            if current_volume > min:
+                return current_volume - 1
 
     def channel_up(self, max=MAX_CHANNEL):
-        current_channel = self.current_channel.get()
-        if current_channel < max:
-            return current_channel + 1
+        """
+        Function to increase the channel of the television.
+        :param max: The maximum numbered channel for the television
+        :return: Returns the current channel value increased by one, provided the television is powered on. If the
+         current channel value is equal to the maximum channel, the channel is reset to 0.
+        """
+        if self.power:
+            current_channel = self.current_channel.get()
+            if current_channel < max:
+                current_channel = current_channel + 1
+                return current_channel
+            elif current_channel == max:
+                current_channel = 0
+                return current_channel
 
-    def channel_down(self, min=MIN_CHANNEL):
-        current_channel = self.current_channel.get()
-        if current_channel > min:
-            return current_channel - 1
+
+    def channel_down(self, min=MIN_CHANNEL, max=MAX_CHANNEL):
+        """
+        Function to decrease the channel of the television.
+        :param min: The minimum numbered channel for the television
+        :param max: The maximum numbered channel for the television
+        :return: Returns the current channel value decreased by one, provided the television is powered on. If the
+         current channel value is 0, the channel is reset to the maximum channel.
+        """
+        if self.power:
+            current_channel = self.current_channel.get()
+            if current_channel > min:
+                current_channel = current_channel - 1
+                return current_channel
+            elif current_channel == min:
+                current_channel = max
+                return current_channel
 
 
 
