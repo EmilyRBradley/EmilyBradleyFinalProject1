@@ -2,6 +2,11 @@ from tkinter import *
 
 
 class GUI:
+    MAX_VOLUME = 3
+    MIN_VOLUME = 0
+    MAX_CHANNEL = 3
+    MIN_CHANNEL = 0
+
     def __init__(self, window):
         self.window = window
         self.current_volume = 0
@@ -39,17 +44,25 @@ class GUI:
         self.canvas_screen.pack(padx=5, side='left')
         self.frame_channel.pack(anchor='w', pady=10)
 
-    def volume_up(self):
-        pass
+    def volume_up(self, max=MAX_VOLUME):
+        current_volume = self.current_volume.get()
+        if current_volume < max:
+            return current_volume + 1
 
-    def volume_down(self):
-        pass
+    def volume_down(self, min=MIN_VOLUME):
+        current_volume = self.current_volume.get()
+        if current_volume > min:
+            return current_volume - 1
 
-    def channel_up(self):
-        pass
+    def channel_up(self, max=MAX_CHANNEL):
+        current_channel = self.current_channel.get()
+        if current_channel < max:
+            return current_channel + 1
 
-    def channel_down(self):
-        pass
+    def channel_down(self, min=MIN_CHANNEL):
+        current_channel = self.current_channel.get()
+        if current_channel > min:
+            return current_channel - 1
 
 
 
