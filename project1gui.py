@@ -12,18 +12,22 @@ class GUI:
         buttonRedDown = PhotoImage("DownTriangleRed.png")
 
         self.frame_volume = Frame(self.window)
-        self.button_volume_up = Label(self.frame_volume, image=buttonBlackUp)
+        # self.button_volume_up = Label(self.frame_volume, image=buttonBlackUp)
+        self.button_volume_up = Button(self.frame_volume, text='^', command=self.volume_up)
         self.label_volume = Label(self.frame_volume, text='VOL')
-        self.button_volume_down = Label(self.frame_volume, image=buttonBlackDown)
+        # self.button_volume_down = Label(self.frame_volume, image=buttonBlackDown)
+        self.button_volume_down = Button(self.frame_volume, text='v', command=self.volume_down)
         self.button_volume_up.pack(padx=5, side='left')
         self.label_volume.pack(padx=5, side='left')
         self.button_volume_down.pack(padx=5, side='left')
         self.frame_volume.pack(anchor='e', pady=10)
 
         self.frame_channel = Frame(self.window)
-        self.button_channel_up = Label(self.frame_channel, image=buttonBlackUp, command=self.button_up)
+        # self.button_channel_up = Label(self.frame_channel, image=buttonBlackUp, command=self.button_up)
+        self.button_channel_up = Button(self.frame_channel, text='^', command=self.channel_up)
         self.label_channel = Label(self.frame_channel, text='CHNL')
-        self.button_channel_down = Label(self.frame_channel, image=buttonBlackDown)
+        # self.button_channel_down = Label(self.frame_channel, image=buttonBlackDown)
+        self.button_channel_down = Button(self.frame_channel, text='v', command=self.channel_down)
         self.button_channel_up.pack(padx=5, side='left')
         self.label_channel.pack(padx=5, side='left')
         self.button_channel_down.pack(padx=5, side='left')
@@ -35,7 +39,16 @@ class GUI:
         self.canvas_screen.pack(padx=5, side='left')
         self.frame_channel.pack(anchor='w', pady=10)
 
-    def button_up(self):
+    def volume_up(self):
+        pass
+
+    def volume_down(self):
+        pass
+
+    def channel_up(self):
+        pass
+
+    def channel_down(self):
         pass
 
 
